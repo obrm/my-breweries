@@ -25,6 +25,17 @@ export const getBreweries = createAsyncThunk('brewery', async () => {
   }
 });
 
+export const getFavoredBreweriesFromAPI = createAsyncThunk(
+  'brewery',
+  async () => {
+    try {
+      return await breweryService.getFavoredBreweriesFromAPI(favoredBreweries);
+    } catch (err) {
+      console.error('Error: ', err);
+    }
+  }
+);
+
 const toggleFavoriteBrewery = (
   favoredBreweries: FavoredBreweries,
   selectedBrewery: IBrewery
@@ -37,7 +48,7 @@ const toggleFavoriteBrewery = (
   let newFavoredBreweries = [];
 
   if (!favoredBrewery) {
-    previousFavorites.push({ ...selectedBrewery, isFavored: true });
+    previousFavorites.push({ ...selectedBrewery });
 
     newFavoredBreweries = previousFavorites;
   } else {
@@ -79,6 +90,19 @@ export const brewerySlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.breweries = [];
+      })
+      .addCase(getFavoredBreweriesFromAPI.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getFavoredBreweriesFromAPI.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.favoredBreweries = action.payload || [];
+      })
+      .addCase(getFavoredBreweriesFromAPI.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.favoredBreweries = [];
       });
   },
 });

@@ -7,5 +7,4 @@ export default interface IBrewery {
   state: string;
   country: string;
   website_url: string | null;
-  isFavored: boolean | null;
 }

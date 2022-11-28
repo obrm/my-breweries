@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Typography from '@mui/material/Typography';
 
-import { getBreweries } from '../features/breweries/brewerySlice';
+import { getFavoredBreweriesFromAPI } from '../features/breweries/brewerySlice';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { Brewery } from './../features/breweries/components';
 
@@ -15,7 +15,7 @@ const FavoritesPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getBreweries());
+    dispatch(getFavoredBreweriesFromAPI());
   }, [dispatch]);
 
   return (

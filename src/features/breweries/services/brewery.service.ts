@@ -7,8 +7,25 @@ const getBreweries = async () => {
   );
 };
 
+const getFavoredBreweriesFromAPI = async (
+  favoredBreweries: IBrewery[]
+): Promise<IBrewery[]> => {
+  const breweries = await getBreweries();
+  const favoredBreweriesFromAPI: IBrewery[] = [];
+
+  favoredBreweries.forEach((brewery: IBrewery) => {
+    const breweryFromAPI = breweries.data.find(
+      (b: IBrewery) => b.id === brewery.id
+    );
+    !!breweryFromAPI && favoredBreweriesFromAPI.push(breweryFromAPI);
+  });
+
+  return favoredBreweriesFromAPI;
+};
+
 const breweryService = {
   getBreweries,
+  getFavoredBreweriesFromAPI,
 };
 
 export default breweryService;
