@@ -13,6 +13,7 @@ const FavoritesPage = () => {
 
   useEffect(() => {
     dispatch(getFavoredBreweriesFromAPI(favoredBreweries));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   return (
