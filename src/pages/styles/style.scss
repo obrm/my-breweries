@@ -1,0 +1,17 @@
+@import 'src/shared/styles/variables';
+
+.container {
+  background-color: $secondary;
+  height: calc(100vh - #{$appBarHeight});
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 0;
+
+  .breweries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+}
