@@ -11,7 +11,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { toggleFavorite } from '../features/breweries/brewerySlice';
-import { useAppDispatch, useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { IBrewery } from '../features/breweries/models';
 
 interface BreweryProps {

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { getFavoredBreweriesFromAPI } from '../features/breweries/brewerySlice';
 
-import { useAppDispatch, useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
 
 import { BreweriesList } from '../components';
 

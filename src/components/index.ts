@@ -2,5 +2,6 @@ import LogoTypography from './LogoTypography.component';
 import HeaderBox from './HeaderBox.component';
 import BreweriesList from './BreweriesList.component';
 import Brewery from './Brewery.component';
+import Header from './Header.component';
 
-export { Brewery, BreweriesList, LogoTypography, HeaderBox };
+export { Header, Brewery, BreweriesList, LogoTypography, HeaderBox };

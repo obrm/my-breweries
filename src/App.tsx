@@ -4,7 +4,7 @@ import { ThemeProvider } from '@mui/material';
 import { theme } from './shared/utils/theme';
 
 import { HomePage, FavoritesPage } from './pages';
-import { Header } from './shared/components';
+import { Header } from './components';
 
 function App() {
   return (

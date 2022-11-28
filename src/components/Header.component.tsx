@@ -14,9 +14,9 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { LogoTypography, HeaderBox } from '../../components';
+import { LogoTypography, HeaderBox } from './';
 
-import { pages } from '../utils/constants';
+import { pages } from '../constants';
 
 import './styles/Header.style.scss';
 

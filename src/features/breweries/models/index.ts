@@ -1,5 +1,3 @@
-import { AsyncState } from './../../../shared/models';
-
 export interface IBrewery {
   id: string;
   name: string;
@@ -17,3 +15,9 @@ export interface BreweryState extends AsyncState {
 }
 
 export type FavoredBreweries = IBrewery[];
+
+export interface AsyncState {
+  isLoading: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+}
