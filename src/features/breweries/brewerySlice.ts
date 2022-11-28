@@ -17,7 +17,7 @@ const initialState: BreweryState = {
   isError: false,
 };
 
-export const getBreweries = createAsyncThunk('brewery', async () => {
+export const getBreweries = createAsyncThunk('breweries', async () => {
   try {
     return await breweryService.getBreweries();
   } catch (err) {
@@ -26,7 +26,7 @@ export const getBreweries = createAsyncThunk('brewery', async () => {
 });
 
 export const getFavoredBreweriesFromAPI = createAsyncThunk(
-  'brewery',
+  'favoredBreweries',
   async () => {
     try {
       return await breweryService.getFavoredBreweriesFromAPI(favoredBreweries);
