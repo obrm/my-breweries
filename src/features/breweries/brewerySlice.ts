@@ -3,8 +3,10 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { BreweryState, FavoredBreweries, IBrewery } from './models';
 import breweryService from './services/brewery.service';
 
+import { LOCAL_STORAGE_KEY } from '../../constants';
+
 const storedFavoredBreweries: string | null =
-  localStorage.getItem('favoredBreweries');
+  localStorage.getItem(LOCAL_STORAGE_KEY);
 const favoredBreweries: FavoredBreweries = !!storedFavoredBreweries
   ? JSON.parse(storedFavoredBreweries)
   : [];
@@ -59,7 +61,7 @@ const toggleFavoriteBrewery = (
     newFavoredBreweries = [...filteredBreweries];
   }
 
-  localStorage.setItem('favoredBreweries', JSON.stringify(newFavoredBreweries));
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newFavoredBreweries));
 
   return newFavoredBreweries;
 };

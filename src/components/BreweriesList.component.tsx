@@ -17,7 +17,7 @@ const BreweriesList: React.FC<Props> = ({ breweries, page, isLoading }) => {
   return (
     <>
       <Helmet>
-        <title>{page}</title>
+        <title>My Breweries | {page}</title>
       </Helmet>
       <div className="container">
         {isLoading ? (
