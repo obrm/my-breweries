@@ -10,9 +10,9 @@ import {
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-import { toggleFavorite } from '../brewerySlice';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { IBrewery } from './../models';
+import { toggleFavorite } from '../features/breweries/brewerySlice';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { IBrewery } from '../features/breweries/models';
 
 interface BreweryProps {
   brewery: IBrewery;

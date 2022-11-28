@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 
-import { Helmet } from 'react-helmet';
-
 import { getBreweries } from '../features/breweries/brewerySlice';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { Brewery } from './../features/breweries/components';
 
-import './styles/style.scss';
+import { useAppDispatch, useAppSelector } from '../hooks';
+
+import { BreweriesList } from '../components';
 
 const HomePage = () => {
-  const { breweries } = useAppSelector((state) => state.brewery);
+  const { breweries, isLoading } = useAppSelector((state) => state.brewery);
 
   const dispatch = useAppDispatch();
 
@@ -18,16 +16,7 @@ const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Helmet>
-        <title>Home</title>
-      </Helmet>
-      <div className="container">
-        <div className="breweries-grid">
-          {breweries.slice(0, 18).map((brewery) => <Brewery key={brewery.id} brewery={brewery} />)}
-        </div>
-      </div>
-    </>
+    <BreweriesList breweries={breweries} isLoading={isLoading} page='Home' />
   );
 };
 

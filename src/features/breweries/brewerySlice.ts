@@ -60,7 +60,7 @@ const toggleFavoriteBrewery = (
   }
 
   localStorage.setItem('favoredBreweries', JSON.stringify(newFavoredBreweries));
-
+  console.log('❤️ toggleFavoriteBrewery', newFavoredBreweries.length);
   return newFavoredBreweries;
 };
 
@@ -97,7 +97,7 @@ export const brewerySlice = createSlice({
       .addCase(getFavoredBreweriesFromAPI.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.favoredBreweries = action.payload || [];
+        state.favoredBreweries = action.payload || state.favoredBreweries;
       })
       .addCase(getFavoredBreweriesFromAPI.rejected, (state) => {
         state.isLoading = false;
