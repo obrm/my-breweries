@@ -28,8 +28,7 @@ const BreweriesList: React.FC<Props> = ({ breweries, page, isLoading }) => {
           <div className="breweries-grid">
             {breweries.map((brewery) => <Brewery key={brewery.id} brewery={brewery} />)}
           </div>
-        )
-        }
+        )}
       </div>
     </>
   );

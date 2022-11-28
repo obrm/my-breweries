@@ -8,7 +8,12 @@ interface Props {
 
 const HeaderBox: React.FC<Props> = ({ isMobile, children }) => {
   return (
-    <Box sx={{ flexGrow: 1, marginLeft: !isMobile ? 10 : null, display: { xs: isMobile ? 'flex' : 'none', md: isMobile ? 'none' : 'flex' } }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        marginLeft: !isMobile ? 10 : null,
+        display: { xs: isMobile ? 'flex' : 'none', md: isMobile ? 'none' : 'flex' }
+      }}>
       {children}
     </ Box>
   );
