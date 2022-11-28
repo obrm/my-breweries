@@ -20,7 +20,7 @@ yarn
 yarn start
 ```
 
-## Build & Deploy
+## Build
 
 ```
 yarn build
