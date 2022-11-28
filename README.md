@@ -22,8 +22,6 @@ yarn start
 
 ## Build & Deploy
 
-# Create prod build
-
 ```
 yarn build
 ```
