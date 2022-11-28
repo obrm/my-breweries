@@ -40,23 +40,17 @@ const toggleFavoriteBrewery = (
   favoredBreweries: IBrewery[],
   selectedBrewery: IBrewery
 ) => {
-  const previousFavorites = [...favoredBreweries];
-  const favoredBrewery = previousFavorites.find(
+  let newFavoredBreweries = [...favoredBreweries];
+  const favoredBrewery = newFavoredBreweries.find(
     (brewery) => brewery.id === selectedBrewery.id
   );
 
-  let newFavoredBreweries = [];
-
   if (!favoredBrewery) {
-    previousFavorites.push({ ...selectedBrewery });
-
-    newFavoredBreweries = previousFavorites;
+    newFavoredBreweries.push({ ...selectedBrewery });
   } else {
-    const filteredBreweries = previousFavorites.filter(
+    newFavoredBreweries = newFavoredBreweries.filter(
       (brewery) => brewery.id !== favoredBrewery.id
     );
-
-    newFavoredBreweries = [...filteredBreweries];
   }
 
   const favoredBreweriesIds = newFavoredBreweries.map(
