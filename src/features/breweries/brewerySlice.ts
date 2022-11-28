@@ -11,7 +11,7 @@ const favoredBreweries: FavoredBreweries = !!storedFavoredBreweries
 
 const initialState: BreweryState = {
   breweries: [],
-  favoredBreweries: favoredBreweries,
+  favoredBreweries,
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -27,9 +27,9 @@ export const getBreweries = createAsyncThunk('breweries', async () => {
 
 export const getFavoredBreweriesFromAPI = createAsyncThunk(
   'favoredBreweries',
-  async () => {
+  async (favoriteBreweries: IBrewery[]) => {
     try {
-      return await breweryService.getFavoredBreweriesFromAPI(favoredBreweries);
+      return await breweryService.getFavoredBreweriesFromAPI(favoriteBreweries);
     } catch (err) {
       console.error('Error: ', err);
     }
@@ -60,7 +60,7 @@ const toggleFavoriteBrewery = (
   }
 
   localStorage.setItem('favoredBreweries', JSON.stringify(newFavoredBreweries));
-  console.log('❤️ toggleFavoriteBrewery', newFavoredBreweries.length);
+
   return newFavoredBreweries;
 };
 

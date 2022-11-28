@@ -1,5 +1,19 @@
-import IBrewery from './Brewery.interface';
-import BreweryState from './BreweryState.interface';
-import { FavoredBreweries } from './FavoredBreweries.type';
+import { AsyncState } from './../../../shared/models';
 
-export type { IBrewery, BreweryState, FavoredBreweries };
+export interface IBrewery {
+  id: string;
+  name: string;
+  brewery_type: string;
+  street: string;
+  city: string;
+  state: string;
+  country: string;
+  website_url: string | null;
+}
+
+export interface BreweryState extends AsyncState {
+  breweries: IBrewery[];
+  favoredBreweries: FavoredBreweries;
+}
+
+export type FavoredBreweries = IBrewery[];

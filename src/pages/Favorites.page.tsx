@@ -12,7 +12,7 @@ const FavoritesPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getFavoredBreweriesFromAPI());
+    dispatch(getFavoredBreweriesFromAPI(favoredBreweries));
   }, [dispatch]);
 
   return (
