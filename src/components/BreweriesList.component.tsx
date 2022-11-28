@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet';
 import Typography from '@mui/material/Typography';
 
-import { IBrewery } from '../interfaces';
+import { IBrewery } from '../features/breweries/interfaces/Brewery.interfaces';
 
 import { Brewery } from './';
 

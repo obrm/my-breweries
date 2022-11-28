@@ -12,7 +12,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { toggleFavorite } from '../features/breweries/brewerySlice';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { IBrewery } from '../interfaces';
+import { IBrewery } from '../features/breweries/interfaces/Brewery.interfaces';
 
 interface Props {
   brewery: IBrewery;

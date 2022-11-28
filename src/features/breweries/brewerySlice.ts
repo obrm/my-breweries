@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { BreweryState, IBrewery } from '../../interfaces';
+import { BreweryState, IBrewery } from './interfaces/Brewery.interfaces';
 import breweryService from '../../services/brewery.service';
 
 import { LOCAL_STORAGE_KEY } from '../../constants';

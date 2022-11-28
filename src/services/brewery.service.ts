@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IBrewery } from '../interfaces';
+import { IBrewery } from '../features/breweries/interfaces/Brewery.interfaces';
 
 const getBreweries = async () => {
   try {
