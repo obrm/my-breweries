@@ -1,19 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { BreweryState, FavoredBreweries, IBrewery } from './models';
-import breweryService from './services/brewery.service';
+import { BreweryState, IBrewery } from '../../interfaces';
+import breweryService from '../../services/brewery.service';
 
 import { LOCAL_STORAGE_KEY } from '../../constants';
 
-const storedFavoredBreweries: string | null =
-  localStorage.getItem(LOCAL_STORAGE_KEY);
-const favoredBreweries: FavoredBreweries = !!storedFavoredBreweries
-  ? JSON.parse(storedFavoredBreweries)
-  : [];
-
 const initialState: BreweryState = {
   breweries: [],
-  favoredBreweries,
+  favoredBreweries: [],
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -21,7 +15,8 @@ const initialState: BreweryState = {
 
 export const getBreweries = createAsyncThunk('breweries', async () => {
   try {
-    return await breweryService.getBreweries();
+    const breweries = await breweryService.getBreweries();
+    return breweries;
   } catch (err) {
     console.error('Error: ', err);
   }
@@ -29,9 +24,12 @@ export const getBreweries = createAsyncThunk('breweries', async () => {
 
 export const getFavoredBreweriesFromAPI = createAsyncThunk(
   'favoredBreweries',
-  async (favoriteBreweries: IBrewery[]) => {
+  async (favoriteBreweriesIds: string[]) => {
     try {
-      return await breweryService.getFavoredBreweriesFromAPI(favoriteBreweries);
+      const favoredBreweries = await breweryService.getFavoredBreweriesFromAPI(
+        favoriteBreweriesIds
+      );
+      return favoredBreweries;
     } catch (err) {
       console.error('Error: ', err);
     }
@@ -39,9 +37,9 @@ export const getFavoredBreweriesFromAPI = createAsyncThunk(
 );
 
 const toggleFavoriteBrewery = (
-  favoredBreweries: FavoredBreweries,
+  favoredBreweries: IBrewery[],
   selectedBrewery: IBrewery
-): FavoredBreweries => {
+) => {
   const previousFavorites = [...favoredBreweries];
   const favoredBrewery = previousFavorites.find(
     (brewery) => brewery.id === selectedBrewery.id
@@ -55,13 +53,17 @@ const toggleFavoriteBrewery = (
     newFavoredBreweries = previousFavorites;
   } else {
     const filteredBreweries = previousFavorites.filter(
-      (b) => b.id !== favoredBrewery.id
+      (brewery) => brewery.id !== favoredBrewery.id
     );
 
     newFavoredBreweries = [...filteredBreweries];
   }
 
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newFavoredBreweries));
+  const favoredBreweriesIds = newFavoredBreweries.map(
+    (brewery: IBrewery) => brewery.id
+  );
+
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(favoredBreweriesIds));
 
   return newFavoredBreweries;
 };
@@ -86,7 +88,7 @@ export const brewerySlice = createSlice({
       .addCase(getBreweries.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.breweries = action.payload?.data || [];
+        state.breweries = action.payload || [];
       })
       .addCase(getBreweries.rejected, (state) => {
         state.isLoading = false;

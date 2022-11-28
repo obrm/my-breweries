@@ -1,19 +1,22 @@
 import { Helmet } from 'react-helmet';
 import Typography from '@mui/material/Typography';
 
-import { IBrewery } from '../features/breweries/models';
+import { IBrewery } from '../interfaces';
 
 import { Brewery } from './';
+
+import { useAppSelector } from '../hooks/redux';
 
 import './styles/breweriesList.style.scss';
 
 interface Props {
   breweries: IBrewery[];
   page: string;
-  isLoading: boolean;
 }
 
-const BreweriesList: React.FC<Props> = ({ breweries, page, isLoading }) => {
+const BreweriesList: React.FC<Props> = ({ breweries, page }) => {
+  const { isLoading } = useAppSelector((state) => state.brewery);
+
   return (
     <>
       <Helmet>

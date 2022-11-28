@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { BreweriesList } from '../components';
 
 const HomePage = () => {
-  const { breweries, isLoading } = useAppSelector((state) => state.brewery);
+  const { breweries } = useAppSelector((state) => state.brewery);
 
   const dispatch = useAppDispatch();
 
@@ -16,7 +16,7 @@ const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <BreweriesList breweries={breweries} isLoading={isLoading} page='Home' />
+    <BreweriesList breweries={breweries} page='Home' />
   );
 };
 

@@ -12,19 +12,23 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { toggleFavorite } from '../features/breweries/brewerySlice';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { IBrewery } from '../features/breweries/models';
+import { IBrewery } from '../interfaces';
 
-interface BreweryProps {
+interface Props {
   brewery: IBrewery;
 }
 
-const Brewery: React.FC<BreweryProps> = ({ brewery }) => {
+const Brewery: React.FC<Props> = ({ brewery }) => {
 
   const dispatch = useAppDispatch();
 
   const { favoredBreweries } = useAppSelector((state) => state.brewery);
 
   const breweryItem = favoredBreweries.find((item) => item.id === brewery.id);
+
+  const handleClickToggle = () => {
+    dispatch(toggleFavorite(brewery));
+  };
 
   return (
     <Card sx={{ width: 350, minWidth: 350, minHeight: 290 }}>
@@ -46,12 +50,10 @@ const Brewery: React.FC<BreweryProps> = ({ brewery }) => {
         </Link>}
       </CardContent>
       <CardActions>
-        <Button onClick={() => {
-          dispatch(toggleFavorite(brewery));
-        }}
+        <Button onClick={handleClickToggle}
           size='large'
           sx={{ fontWeight: 800 }}>
-          {!!breweryItem ? <FavoriteIcon color='error' /> : <FavoriteBorderIcon color='error' />}
+          {breweryItem ? <FavoriteIcon color='error' /> : <FavoriteBorderIcon color='error' />}
         </Button>
       </CardActions>
     </Card>

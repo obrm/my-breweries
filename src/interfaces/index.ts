@@ -11,10 +11,8 @@ export interface IBrewery {
 
 export interface BreweryState extends AsyncState {
   breweries: IBrewery[];
-  favoredBreweries: FavoredBreweries;
+  favoredBreweries: IBrewery[];
 }
-
-export type FavoredBreweries = IBrewery[];
 
 export interface AsyncState {
   isLoading: boolean;
