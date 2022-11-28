@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 
-import { theme } from './shared/utils/theme';
+import { theme } from './utils/theme';
 
 import { HomePage, FavoritesPage } from './pages';
 import { Header } from './components';
