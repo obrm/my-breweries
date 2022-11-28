@@ -7,10 +7,16 @@
   z-index: 10;
 }
 
+.link {
+  text-decoration: none;
+  color: #fff;
+  z-index: 100;
+}
+
 @media (max-width: $md) {
   .logo {
     height: 50px;
-    right: 70px;
+    right: 0;
     left: unset;
   }
 }

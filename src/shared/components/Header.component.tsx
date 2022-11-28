@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import {
   AppBar,
@@ -10,9 +11,10 @@ import {
   Typography,
   IconButton,
   Toolbar,
-  Box
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+
+import { LogoTypography, HeaderBox } from '../../components';
 
 import { pages } from '../utils/constants';
 
@@ -40,25 +42,12 @@ const Header = () => {
     <AppBar position="static" color="primary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontWeight: 700,
-              color: 'inherit',
-              textDecoration: 'none',
-              zIndex: 100,
-            }}
-          >
-            My Breweries
-          </Typography>
+          <Link to='/' className='link'>
+            <LogoTypography isMobile={false} title='My Breweries' />
+          </Link>
           <img src="assets/images/logo/logo.png" alt="logo" className='logo' />
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <HeaderBox isMobile={true} >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -93,26 +82,12 @@ const Header = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontWeight: 700,
-              color: 'inherit',
-              textDecoration: 'none',
-              zIndex: 100,
-            }}
-          >
-            My Breweries
-          </Typography>
+          </HeaderBox>
+          <Link to='/' className='link'>
+            <LogoTypography isMobile={true} title='My Breweries' />
+          </Link>
 
-          <Box sx={{ flexGrow: 1, marginLeft: 10, display: { xs: 'none', md: 'flex' } }}>
+          <HeaderBox isMobile={false}>
             {pages.map((page) => (
               <Button
                 key={page.name}
@@ -122,7 +97,7 @@ const Header = () => {
                 {page.name}
               </Button>
             ))}
-          </Box>
+          </HeaderBox>
         </Toolbar>
       </Container>
     </AppBar>

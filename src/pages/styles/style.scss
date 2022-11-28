@@ -1,8 +1,7 @@
 @import 'src/shared/styles/variables';
 
 .container {
-  background-color: $secondary;
-  height: calc(100vh - #{$appBarHeight});
+  height: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -13,5 +12,21 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 48px;
+  }
+}
+
+@media (max-width: $lg) {
+  .container {
+    .breweries-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: $md) {
+  .container {
+    .breweries-grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }
