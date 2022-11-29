@@ -1,5 +1,6 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { IBrewery } from '../features/breweries/interfaces/Brewery.interfaces';
+import { errorsService } from './';
 
 const getBreweries = async () => {
   try {
@@ -8,7 +9,8 @@ const getBreweries = async () => {
     );
     return response.data;
   } catch (err) {
-    console.error('Error: ', err);
+    const error = err as AxiosError;
+    errorsService.handleError(error);
   }
 };
 
@@ -28,7 +30,8 @@ const getFavoredBreweriesFromAPI = async (favoredBreweries: string[]) => {
 
     return favoredBreweriesFromAPI;
   } catch (err) {
-    console.error('Error: ', err);
+    const error = err as AxiosError;
+    errorsService.handleError(error);
   }
 };
 

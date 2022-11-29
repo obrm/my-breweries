@@ -3,8 +3,7 @@ import HeaderBox from './HeaderBox.component';
 import BreweriesList from './BreweriesList.component';
 import Brewery from './Brewery.component';
 import Header from './Header.component';
-import SnackBar from './SnackBar.component';
-import Alert from './Alert.component';
+import AlertMessage from './AlertMessage.component';
 
 export {
   Header,
@@ -12,6 +11,5 @@ export {
   BreweriesList,
   LogoTypography,
   HeaderBox,
-  SnackBar,
-  Alert,
+  AlertMessage,
 };

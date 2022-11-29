@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 
 import { IBrewery } from '../features/breweries/interfaces/Brewery.interfaces';
 
-import { Brewery, SnackBar } from './';
+import { Brewery, AlertMessage } from './';
 
 import { useAppSelector } from '../hooks/redux';
 
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const BreweriesList: React.FC<Props> = ({ breweries, page }) => {
-  const { isLoading } = useAppSelector((state) => state.brewery);
+  const { isLoading, isError } = useAppSelector((state) => state.brewery);
 
   return (
     <>
@@ -23,16 +23,18 @@ const BreweriesList: React.FC<Props> = ({ breweries, page }) => {
         <title>My Breweries | {page}</title>
       </Helmet>
       <div className="container">
-        <SnackBar message="An error occurred. Please try again later" severity='error' />
-        {isLoading ? (
-          <img src='assets/images/loader/loader.gif' alt="loading..." className="loader" />
-        ) : page === 'Favorites' && breweries.length === 0 ? (
-          <Typography variant="h3" sx={{ mt: 12, textAlign: 'center' }}>There are no favorite Breweries</Typography>
-        ) : (
-          <div className="breweries-grid">
-            {breweries.map((brewery) => <Brewery key={brewery.id} brewery={brewery} />)}
-          </div>
-        )}
+        {isError ?
+          (
+            <AlertMessage message="An error occurred. Please try again later." severity='error' />
+          ) : isLoading ? (
+            <img src='assets/images/loader/loader.gif' alt="loading..." className="loader" />
+          ) : page === 'Favorites' && breweries.length === 0 ? (
+            <Typography variant="h3" sx={{ mt: 12, textAlign: 'center' }}>There are no favorite Breweries</Typography>
+          ) : (
+            <div className="breweries-grid">
+              {breweries.map((brewery) => <Brewery key={brewery.id} brewery={brewery} />)}
+            </div>
+          )}
       </div>
     </>
   );
