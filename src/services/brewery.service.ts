@@ -1,4 +1,5 @@
 import axios, { AxiosError } from 'axios';
+
 import { IBrewery } from '../features/breweries/interfaces/Brewery.interfaces';
 import { errorsService } from './';
 
