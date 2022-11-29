@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { BreweryState, IBrewery } from './interfaces/Brewery.interfaces';
-import { breweryService } from '../../services';
+import { breweryService, errorsService } from '../../services';
 
 import { LOCAL_STORAGE_KEY } from '../../constants';
 
@@ -14,18 +14,15 @@ const initialState: BreweryState = {
   isError: false,
 };
 
-export const getBreweries = createAsyncThunk(
-  'breweries',
-  async (_, { rejectWithValue }) => {
-    try {
-      const breweries = await breweryService.getBreweries();
-      return breweries;
-    } catch (err) {
-      const error = err as AxiosError;
-      return rejectWithValue(error.message);
-    }
+export const getBreweries = createAsyncThunk('breweries', async () => {
+  try {
+    const breweries = await breweryService.getBreweries();
+    return breweries;
+  } catch (err) {
+    const error = err as AxiosError;
+    errorsService.handleError(error);
   }
-);
+});
 
 export const getFavoredBreweriesFromAPI = createAsyncThunk(
   'favoredBreweries',
@@ -37,7 +34,7 @@ export const getFavoredBreweriesFromAPI = createAsyncThunk(
       return favoredBreweries;
     } catch (err) {
       const error = err as AxiosError;
-      return rejectWithValue(error.message);
+      errorsService.handleError(error);
     }
   }
 );
@@ -84,6 +81,7 @@ export const brewerySlice = createSlice({
     builder
       .addCase(getBreweries.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
       })
       .addCase(getBreweries.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -92,11 +90,12 @@ export const brewerySlice = createSlice({
       })
       .addCase(getBreweries.rejected, (state) => {
         state.isLoading = false;
-        state.isError = true;       
+        state.isError = true;
         state.breweries = [];
       })
       .addCase(getFavoredBreweriesFromAPI.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
       })
       .addCase(getFavoredBreweriesFromAPI.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -106,7 +105,7 @@ export const brewerySlice = createSlice({
       .addCase(getFavoredBreweriesFromAPI.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
-        state.favoredBreweries = [];        
+        state.favoredBreweries = [];
       });
   },
 });
