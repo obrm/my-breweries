@@ -44,7 +44,7 @@ const Brewery: React.FC<Props> = ({ brewery }) => {
         <Typography variant='body2' color='text.secondary' sx={{ mb: 1.5 }}>
           {brewery.country}
         </Typography>
-        {brewery.website_url && <Link href={brewery.website_url} variant="body2">
+        {brewery.website_url && <Link href={brewery.website_url} target="_blank" variant="body2">
           website
         </Link>}
       </CardContent>
