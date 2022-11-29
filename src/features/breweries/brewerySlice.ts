@@ -26,7 +26,7 @@ export const getBreweries = createAsyncThunk('breweries', async () => {
 
 export const getFavoredBreweriesFromAPI = createAsyncThunk(
   'favoredBreweries',
-  async (favoriteBreweriesIds: string[], { rejectWithValue }) => {
+  async (favoriteBreweriesIds: string[]) => {
     try {
       const favoredBreweries = await breweryService.getFavoredBreweriesFromAPI(
         favoriteBreweriesIds
@@ -88,7 +88,7 @@ export const brewerySlice = createSlice({
         state.isSuccess = true;
         state.breweries = action.payload || [];
       })
-      .addCase(getBreweries.rejected, (state) => {
+      .addCase(getBreweries.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.breweries = [];
