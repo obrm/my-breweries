@@ -1,9 +1,10 @@
-import Alert from '@mui/material/Alert';
+import SeverityType from './types/Severity.type';
 
+import Alert from '@mui/material/Alert';
 
 interface Props {
   message: string;
-  severity: "success" | "error" | "warning" | "info";
+  severity: SeverityType;
 }
 
 const AlertMessage: React.FC<Props> = ({ message, severity }) => {

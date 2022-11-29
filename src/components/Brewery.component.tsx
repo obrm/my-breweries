@@ -19,12 +19,11 @@ interface Props {
 }
 
 const Brewery: React.FC<Props> = ({ brewery }) => {
-
   const dispatch = useAppDispatch();
 
   const { favoredBreweries } = useAppSelector((state) => state.brewery);
 
-  const breweryItem = favoredBreweries.find((item) => item.id === brewery.id);
+  const isFavored = favoredBreweries.find((item) => item.id === brewery.id);
 
   const handleClickToggle = () => {
     dispatch(toggleFavorite(brewery));
@@ -53,7 +52,7 @@ const Brewery: React.FC<Props> = ({ brewery }) => {
         <Button onClick={handleClickToggle}
           size='large'
           sx={{ fontWeight: 800 }}>
-          {breweryItem ? <FavoriteIcon color='error' /> : <FavoriteBorderIcon color='error' />}
+          {isFavored ? <FavoriteIcon color='error' /> : <FavoriteBorderIcon color='error' />}
         </Button>
       </CardActions>
     </Card>

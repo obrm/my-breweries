@@ -32,7 +32,6 @@ const Header = () => {
     setAnchorElNav(null);
   };
 
-
   const handleOnClickNavMenu = (path: string) => {
     setAnchorElNav(null);
     navigate(path);
