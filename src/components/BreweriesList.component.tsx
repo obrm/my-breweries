@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 
 import { IBrewery } from '../features/breweries/interfaces/Brewery.interfaces';
 
-import { Brewery } from './';
+import { Brewery, SnackBar } from './';
 
 import { useAppSelector } from '../hooks/redux';
 
@@ -23,6 +23,7 @@ const BreweriesList: React.FC<Props> = ({ breweries, page }) => {
         <title>My Breweries | {page}</title>
       </Helmet>
       <div className="container">
+        <SnackBar message="An error occurred. Please try again later" severity='error' />
         {isLoading ? (
           <img src='assets/images/loader/loader.gif' alt="loading..." className="loader" />
         ) : page === 'Favorites' && breweries.length === 0 ? (
