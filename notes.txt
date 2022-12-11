@@ -1,0 +1,4 @@
+public assets divition into folders in redundant
+package.json has no division to devDeps
+
+mix of sass and mui styles, confusing
