@@ -12,14 +12,14 @@ const useLocalStorage = () => {
   const storedFavoredBreweriesIds: string | null =
     localStorage.getItem(LOCAL_STORAGE_KEY);
 
-  const favoredBreweriesIds: string[] | null = useMemo(() => {
+  const favoredBreweriesIds: string[] | [] = useMemo(() => {
     return storedFavoredBreweriesIds
       ? JSON.parse(storedFavoredBreweriesIds)
       : [];
   }, [storedFavoredBreweriesIds]);
 
   useEffect(() => {
-    if (Array.isArray(favoredBreweriesIds)) {
+    if (favoredBreweriesIds.length > 0) {
       dispatch(getFavoredBreweriesFromAPI(favoredBreweriesIds));
     }
   }, [dispatch, favoredBreweriesIds]);
