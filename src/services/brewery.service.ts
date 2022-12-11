@@ -1,7 +1,7 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError } from "axios";
 
-import { IBrewery } from '../features/breweries/interfaces/Brewery.interfaces';
-import { errorsService } from './';
+import { IBrewery } from "../features/breweries/interfaces/Brewery.interfaces";
+import { errorsService } from "./";
 
 const getBreweries = async () => {
   try {
@@ -19,9 +19,11 @@ const getFavoredBreweriesFromAPI = async (favoredBreweries: string[]) => {
   try {
     const promises: Promise<{ data: IBrewery }>[] = [];
 
+    // should map favoredBreweries into promises instead.
+    // also should add type to axios.get instead of promises.
     favoredBreweries.forEach((id: string) => {
       promises.push(
-        axios.get(`${process.env.REACT_APP_BASE_URL}/breweries/${id}`)
+        axios.get<IBrewery>(`${process.env.REACT_APP_BASE_URL}/breweries/${id}`)
       );
     });
 

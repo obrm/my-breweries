@@ -15,6 +15,7 @@ interface Props {
 }
 
 const BreweriesList: React.FC<Props> = ({ breweries, page }) => {
+  /* if we are already using state and are aware of page, why prop for breweries? */
   const { isLoading, isError } = useAppSelector((state) => state.brewery);
 
   return (

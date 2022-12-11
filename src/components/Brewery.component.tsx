@@ -21,6 +21,7 @@ interface Props {
 const Brewery: React.FC<Props> = ({ brewery }) => {
   const dispatch = useAppDispatch();
 
+  /* state should probably add 'isFavorite' prop for each brewery */
   const { favoredBreweries } = useAppSelector((state) => state.brewery);
 
   const isFavored = favoredBreweries.find((item) => item.id === brewery.id);
@@ -52,7 +53,7 @@ const Brewery: React.FC<Props> = ({ brewery }) => {
         <Button onClick={handleClickToggle}
           size='large'
           sx={{ fontWeight: 800 }}>
-          {isFavored ? <FavoriteIcon color='error' /> : <FavoriteBorderIcon color='error' />}
+          {isFavored ? <FavoriteIcon color='error' /> : <FavoriteBorderIcon color='error' />}{/* color error is wierd */}
         </Button>
       </CardActions>
     </Card>
