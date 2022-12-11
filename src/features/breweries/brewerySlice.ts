@@ -88,7 +88,7 @@ export const brewerySlice = createSlice({
         state.isSuccess = true;
         state.breweries = action.payload || [];
       })
-      .addCase(getBreweries.rejected, (state, action) => {
+      .addCase(getBreweries.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
         state.breweries = [];
