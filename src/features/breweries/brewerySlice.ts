@@ -49,7 +49,7 @@ const toggleFavoriteBrewery = (
   );
 
   if (!favoredBrewery) {
-    newFavoredBreweries.push({ ...selectedBrewery });
+    newFavoredBreweries.push(selectedBrewery);
   } else {
     newFavoredBreweries = newFavoredBreweries.filter(
       (brewery) => brewery.id !== favoredBrewery.id

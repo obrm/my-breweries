@@ -9,13 +9,14 @@ export interface IBrewery {
   website_url: string | null;
 }
 
-export interface BreweryState extends AsyncState {
-  breweries: IBrewery[];
-  favoredBreweries: IBrewery[];
-}
-
 export interface AsyncState {
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
 }
+
+export interface BreweryState extends AsyncState {
+  breweries: IBrewery[];
+  favoredBreweries: IBrewery[];
+}
+
